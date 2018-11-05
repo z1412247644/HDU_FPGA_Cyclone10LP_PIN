@@ -101,9 +101,9 @@
       </widget>
      </item>
      <item row="9" column="0">
-      <widget class="QCheckBox" name="CB_arduion">
+      <widget class="QCheckBox" name="CB_PS2">
        <property name="text">
-        <string>Arduion Header</string>
+        <string>PS/2</string>
        </property>
       </widget>
      </item>
