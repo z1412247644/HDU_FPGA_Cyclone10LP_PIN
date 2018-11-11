@@ -21,7 +21,9 @@ public:
     ~MainWindow();
 private:
     Ui::MainWindow *ui;
-    Dictptr dict;
+    //Dictptr dict;
+    //QImage* img_main=new QImage,*img_logo= new QImage;
+    //QImage* img_main_Scaled = new QImage,*img_logo_Scaled = new QImage;
 private slots:
     void openFile();
     void saveFile();
@@ -36,6 +38,24 @@ private slots:
     void CB_Check();
 
     void on_PB_exit_clicked();
+
+    void on_CB_segment_stateChanged(int arg1);
+
+    void on_CB_LED_stateChanged(int arg1);
+
+    void on_CB_switch_stateChanged(int arg1);
+
+    void on_CB_button_stateChanged(int arg1);
+
+    void on_CB_Serial_stateChanged(int arg1);
+
+    void on_CB_VGA_stateChanged(int arg1);
+
+    void on_CB_SDRAM_stateChanged(int arg1);
+
+    void on_CB_PS2_stateChanged(int arg1);
+
+    void on_CB_BEEP_stateChanged(int arg1);
 
 private:
     QTextEdit *textEdit;
