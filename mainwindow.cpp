@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 //#include <QGraphicsView>
-#include <QtGui>
+//#include <QtGui>
 #include <QtWidgets>
 #include<QDateTime>
 #include<QImage>
@@ -40,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete textEdit;
 //    DestroyDict(dict);
 //    delete img_main;
 //    delete img_logo;
@@ -64,21 +65,15 @@ void MainWindow::creatFile(QString path,QString text)
     }
 }
 
-void MainWindow::openFile()
+void MainWindow::openFile(QFile &file,QString f_path)
 {
-    QString path = QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("Text Files(*.txt)"));
-    if(!path.isEmpty()) {
-        QFile file(path);
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            QMessageBox::warning(this, tr("Read File"), tr("Cannot open file:\n%1").arg(path));
-            return;
-        }
-        QTextStream in(&file);
-        textEdit->setText(in.readAll());
-        file.close();
-    } else {
-        QMessageBox::warning(this, tr("Path"), tr("You did not select any file."));
+    //QString path = QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("Text Files(*.txt)"));
+    file.setFileName(f_path);
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        QMessageBox::warning(this, tr("Read File"), tr("Cannot open file:\n%1").arg(path));
+        return;
     }
+        //textEdit->setText(in.readAll());
 }
 
 void MainWindow::saveFile()
@@ -115,7 +110,8 @@ void MainWindow::on_PB_generate_clicked()
     QDateTime current_date_time =QDateTime::currentDateTime();
     QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss");
 
-    QString path = QFileDialog::getExistingDirectory(),path_qdf,path_qsf,path_v;
+    path = QFileDialog::getExistingDirectory();
+    QString path_qdf,path_qsf,path_v;
     path = path + "/" + ui->lineEdit_Pro_name->text();
     /*Check dir exist,if not exist then creat dir*/
     QDir dir;
@@ -548,7 +544,8 @@ void MainWindow::on_PB_save_clicked()
 
 void MainWindow::on_PB_load_clicked()
 {
-    openFile();
+    //openFile();
+    Name_Change();
 }
 
 void MainWindow::on_PB_exit_clicked()
@@ -635,8 +632,28 @@ void MainWindow::on_CB_Change_clicked()
     temp.value=ui->L_N_Name->text();
     q.enqueue(temp);
 }
-void MainWindow::Name_Change(){
-    DNode temp;
-    temp = q.dequeue();
 
+void MainWindow::Name_Change(){
+    QString path_qsf,path_v,s_temp;
+    QFile f_temp;
+    QTextStream f_stream(&f_temp);
+    DNode temp;
+    path_qsf = path +"/"+ ui->lineEdit_Pro_name->text() +".qsf";
+    path_v = path +"/"+ ui->lineEdit_Pro_name->text() +".v";
+    openFile(f_temp,path_qsf);
+    while(!q.empty()){
+        temp = q.dequeue();
+        s_temp =  f_stream.readAll();
+        //s_temp.replace(QRegExp("LED\\[0\\]"),"~");
+        s_temp.replace("LED[0]","~");
+        f_temp.close();
+        f_temp.open(QIODevice::Truncate);
+        f_temp.close();
+
+        f_temp.open(QIODevice::WriteOnly);
+        f_stream<<s_temp;
+        f_temp.close();
+    }
+    //temp = q.dequeue();
+    //textEdit->loadResource();
 }

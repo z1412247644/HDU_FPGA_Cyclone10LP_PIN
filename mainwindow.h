@@ -6,7 +6,7 @@
 #include "Dict.h"
 #include "choice_to_int.h"
 #include<QQueue>
-
+#include <QtGui>
 class QTextEdit;
 
 namespace Ui {
@@ -27,7 +27,7 @@ private:
     //QImage* img_main=new QImage,*img_logo= new QImage;
     //QImage* img_main_Scaled = new QImage,*img_logo_Scaled = new QImage;
 private slots:
-    void openFile();
+    void openFile(QFile &file,QString f_path);
     void saveFile();
     void creatFile(QString,QString);
 
@@ -65,6 +65,7 @@ private slots:
 
 private:
     QTextEdit *textEdit;
+    QString path;
 };
 
 #endif // MAINWINDOW_H
