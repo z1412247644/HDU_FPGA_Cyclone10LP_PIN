@@ -1,13 +1,14 @@
 #ifndef WJH_DICT_H
 #define WJH_DICT_H
-
-#define DElemType bool
+#include<QString>
+#define DElemType QString
+#define KElemType QString
 #define My_Status int
 #define OK 0
 #define ERROR 1
 
 typedef struct DNode {
-    int key;
+     KElemType key;
     DElemType value;
 
 } DNode;
@@ -19,9 +20,9 @@ typedef struct Dict {
 
 My_Status InitDict(Dictptr &d);
 
-My_Status AddDict(Dictptr &d, int key, DElemType value);
+My_Status AddDict(Dictptr &d, KElemType key, DElemType value);
 
-My_Status FindDictBy_key(Dictptr &d, DNode &e, int key);
+My_Status FindDictBy_key(Dictptr &d, DNode &e, KElemType key);
 
 My_Status DestroyDict(Dictptr &d);
 

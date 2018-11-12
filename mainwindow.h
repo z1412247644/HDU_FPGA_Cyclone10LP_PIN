@@ -5,6 +5,7 @@
 #include<QCheckBox>
 #include "Dict.h"
 #include "choice_to_int.h"
+#include<QQueue>
 
 class QTextEdit;
 
@@ -22,6 +23,7 @@ public:
 private:
     Ui::MainWindow *ui;
     //Dictptr dict;
+    QQueue<DNode> q;
     //QImage* img_main=new QImage,*img_logo= new QImage;
     //QImage* img_main_Scaled = new QImage,*img_logo_Scaled = new QImage;
 private slots:
@@ -56,6 +58,10 @@ private slots:
     void on_CB_PS2_stateChanged(int arg1);
 
     void on_CB_BEEP_stateChanged(int arg1);
+
+    void on_CB_Change_clicked();
+
+    void Name_Change(); //using to change the pin_name
 
 private:
     QTextEdit *textEdit;

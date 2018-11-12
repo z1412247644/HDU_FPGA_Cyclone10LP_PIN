@@ -638,5 +638,5 @@ void MainWindow::on_CB_Change_clicked()
 void MainWindow::Name_Change(){
     DNode temp;
     temp = q.dequeue();
-
+    textEdit->loadResource()
 }

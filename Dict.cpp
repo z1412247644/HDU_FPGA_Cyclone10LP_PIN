@@ -21,7 +21,7 @@ My_Status AddDict(Dictptr & d, int key, DElemType value){
     return OK;
 }
 */
-My_Status FindDictBy_key(Dictptr &d, DNode &e, int key) {
+My_Status FindDictBy_key(Dictptr &d, DNode &e, KElemType key) {
     Dictptr p = d->next;
     while (p != nullptr && p->data.key != key) p = p->next;
     if (p == nullptr) return ERROR;
@@ -29,7 +29,7 @@ My_Status FindDictBy_key(Dictptr &d, DNode &e, int key) {
     return OK;
 }
 
-My_Status AddDict(Dictptr &d, int key, DElemType value) {
+My_Status AddDict(Dictptr &d, KElemType key, DElemType value) {
     Dictptr ptr = d;
     while (ptr->next != nullptr && ptr->next->data.key != key) ptr = ptr->next;
     if (ptr->next == nullptr) {

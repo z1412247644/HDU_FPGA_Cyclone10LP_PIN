@@ -17,10 +17,10 @@
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>70</y>
-      <width>261</width>
-      <height>308</height>
+      <x>490</x>
+      <y>7</y>
+      <width>271</width>
+      <height>421</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -117,12 +117,22 @@
        </property>
       </widget>
      </item>
+     <item row="10" column="0">
+      <widget class="QCheckBox" name="CB_BEEP">
+       <property name="text">
+        <string>BEEP</string>
+       </property>
+      </widget>
+     </item>
      <item row="11" column="0">
       <widget class="QLabel" name="label_GPIO">
        <property name="text">
         <string>GPIO Header</string>
        </property>
       </widget>
+     </item>
+     <item row="15" column="0">
+      <widget class="QLineEdit" name="O_Name"/>
      </item>
      <item row="12" column="0" colspan="2">
       <widget class="QComboBox" name="CBB_GPIO">
@@ -133,25 +143,38 @@
        </item>
       </widget>
      </item>
-     <item row="10" column="0">
-      <widget class="QCheckBox" name="CB_BEEP">
+     <item row="15" column="1">
+      <widget class="QLineEdit" name="N_Name"/>
+     </item>
+     <item row="13" column="0">
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string>BEEP</string>
+        <string>PIN_NAME CHANGE:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="14" column="0">
+      <widget class="QLabel" name="L_O_Name">
+       <property name="text">
+        <string>Original name</string>
+       </property>
+      </widget>
+     </item>
+     <item row="14" column="1">
+      <widget class="QLabel" name="L_N_Name">
+       <property name="text">
+        <string>New name</string>
+       </property>
+      </widget>
+     </item>
+     <item row="16" column="1">
+      <widget class="QPushButton" name="CB_Change">
+       <property name="text">
+        <string>CHANGE</string>
        </property>
       </widget>
      </item>
     </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>379</y>
-      <width>671</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout"/>
    </widget>
    <widget class="QLabel" name="label_main">
     <property name="geometry">
