@@ -628,24 +628,29 @@ void MainWindow::on_CB_BEEP_stateChanged(int arg1)
 void MainWindow::on_CB_Change_clicked()
 {
     DNode temp;
-    temp.key=ui->L_O_Name->text();
-    temp.value=ui->L_N_Name->text();
+    temp.key=ui->O_Name->text();
+    temp.value=ui->N_Name->text();
     q.enqueue(temp);
 }
 
 void MainWindow::Name_Change(){
-    QString path_qsf,path_v,s_temp;
+    QString path_qsf,path_v,s_temp,s_get;
     QFile f_temp;
     QTextStream f_stream(&f_temp);
     DNode temp;
     path_qsf = path +"/"+ ui->lineEdit_Pro_name->text() +".qsf";
     path_v = path +"/"+ ui->lineEdit_Pro_name->text() +".v";
-    openFile(f_temp,path_qsf);
+
     while(!q.empty()){
-        temp = q.dequeue();
+        openFile(f_temp,path_qsf);
         s_temp =  f_stream.readAll();
+        temp = q.dequeue();
         //s_temp.replace(QRegExp("LED\\[0\\]"),"~");
-        s_temp.replace("LED[0]","~");
+        s_get = temp.key;
+        s_get.replace(QRegExp("\\["),"\\[");
+        s_get.replace(QRegExp("\\]"),"\\]");
+        ui->label->setText(s_get);
+        s_temp.replace(QRegExp(s_get),temp.value);
         f_temp.close();
         f_temp.open(QIODevice::Truncate);
         f_temp.close();
