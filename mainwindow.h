@@ -63,9 +63,12 @@ private slots:
 
     void Name_Change(); //using to change the pin_name
 
+    void on_CBB_GPIO_currentIndexChanged(int index);
+
 private:
     QTextEdit *textEdit;
     QString path;
+    QMap<QString,QString> PIN_INOUT;
 };
 
 #endif // MAINWINDOW_H

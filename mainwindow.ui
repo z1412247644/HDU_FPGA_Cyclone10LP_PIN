@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>802</width>
-    <height>524</height>
+    <width>980</width>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,17 +18,29 @@
     <property name="geometry">
      <rect>
       <x>490</x>
-      <y>7</y>
-      <width>271</width>
-      <height>421</height>
+      <y>10</y>
+      <width>291</width>
+      <height>431</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
      <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+     </property>
+     <property name="rowWrapPolicy">
+      <enum>QFormLayout::WrapLongRows</enum>
      </property>
      <property name="labelAlignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="horizontalSpacing">
+      <number>24</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>6</number>
      </property>
      <item row="2" column="0">
       <widget class="QLabel" name="label_Pro_name">
@@ -125,49 +137,103 @@
       </widget>
      </item>
      <item row="11" column="0">
-      <widget class="QLabel" name="label_GPIO">
-       <property name="text">
-        <string>GPIO Header</string>
-       </property>
-      </widget>
-     </item>
-     <item row="15" column="0">
-      <widget class="QLineEdit" name="O_Name"/>
-     </item>
-     <item row="12" column="0" colspan="2">
-      <widget class="QComboBox" name="CBB_GPIO">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="15" column="1">
-      <widget class="QLineEdit" name="N_Name"/>
-     </item>
-     <item row="13" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>PIN_NAME CHANGE:</string>
        </property>
       </widget>
      </item>
-     <item row="14" column="0">
+     <item row="12" column="0">
       <widget class="QLabel" name="L_O_Name">
        <property name="text">
         <string>Original name</string>
        </property>
       </widget>
      </item>
-     <item row="14" column="1">
+     <item row="13" column="0">
+      <widget class="QComboBox" name="CBB_GPIO">
+       <item>
+        <property name="text">
+         <string>CLOCK</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>LED</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>KEY</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SW</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>VGA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SEG</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>PS/2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>UART</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SDRAM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SD_CARD</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="13" column="1">
+      <widget class="QComboBox" name="CBB_O_name">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>9</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>138</width>
+         <height>100</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="14" column="0">
       <widget class="QLabel" name="L_N_Name">
        <property name="text">
         <string>New name</string>
        </property>
       </widget>
      </item>
-     <item row="16" column="1">
+     <item row="15" column="0">
+      <widget class="QLineEdit" name="N_Name"/>
+     </item>
+     <item row="15" column="1">
       <widget class="QPushButton" name="CB_Change">
        <property name="text">
         <string>CHANGE</string>
@@ -218,7 +284,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>420</y>
+      <y>430</y>
       <width>731</width>
       <height>58</height>
      </rect>
@@ -533,7 +599,7 @@ border-color: rgb(255, 0, 0)</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>802</width>
+     <width>980</width>
      <height>23</height>
     </rect>
    </property>

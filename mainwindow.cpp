@@ -5,6 +5,7 @@
 #include <QtWidgets>
 #include<QDateTime>
 #include<QImage>
+#include<QMap>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,6 +30,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Rect_Serial->setVisible(false);
     ui->Rect_VGA->setVisible(false);
 
+    //CBB_init
+    ui->CBB_O_name->insertItem(0,"CLK_50");
+
+
+    PIN_INOUT.insert("KEY","input");
+    PIN_INOUT.insert("SW","input");
+    PIN_INOUT.insert("LED","output");
+    PIN_INOUT.insert("CLK_50","input");
 //    img_main->load(":/img/main");
 //    img_logo->load(":/img/logo");
 
@@ -161,16 +170,16 @@ void MainWindow::on_PB_generate_clicked()
     S_CLOCK = "#================================================================================\n"
               "# CLOCK\n"
               "#================================================================================\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to CLK_50\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to CLK_50\n"
               "set_location_assignment PIN_E15 -to CLK_50\n"
               "\n";
     S_LED = "#================================================================================\n"
             "# LED\n"
             "#================================================================================\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to LED[0]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to LED[1]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to LED[2]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to LED[3]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to LED[0]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to LED[1]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to LED[2]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to LED[3]\n"
             "set_location_assignment PIN_T10 -to LED[0]\n"
             "set_location_assignment PIN_R9 -to LED[1]\n"
             "set_location_assignment PIN_T9 -to LED[2]\n"
@@ -179,22 +188,22 @@ void MainWindow::on_PB_generate_clicked()
     S_SEG8 =  "#================================================================================\n"
               "# SEG8\n"
               "#================================================================================\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[0]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[1]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[2]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[3]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[4]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[5]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[6]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[7]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[0]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[1]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[2]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[3]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[4]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[5]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[6]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[7]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[0]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[1]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[2]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[3]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[4]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[5]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[6]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SEL[7]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[0]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[1]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[2]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[3]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[4]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[5]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[6]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DIG[7]\n"
               "set_location_assignment PIN_D16 -to SEL[0]\n"
               "set_location_assignment PIN_C16 -to SEL[1]\n"
               "set_location_assignment PIN_B16 -to SEL[2]\n"
@@ -215,10 +224,10 @@ void MainWindow::on_PB_generate_clicked()
     S_KEY =   "#================================================================================\n"
               "# KEY\n"
               "#================================================================================\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to KEY[0]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to KEY[1]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to KEY[2]\n"
-              "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to KEY[3]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to KEY[0]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to KEY[1]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to KEY[2]\n"
+              //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to KEY[3]\n"
               "set_location_assignment PIN_M1 -to KEY[0]\n"
               "set_location_assignment PIN_F3 -to KEY[1]\n"
               "set_location_assignment PIN_E1 -to KEY[2]\n"
@@ -227,10 +236,10 @@ void MainWindow::on_PB_generate_clicked()
     S_SW = "#================================================================================\n"
            "# SW\n"
            "#================================================================================\n"
-           "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SW[0]\n"
-           "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SW[1]\n"
-           "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SW[2]\n"
-           "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SW[3]\n"
+           //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SW[0]\n"
+           //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SW[1]\n"
+           //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SW[2]\n"
+           //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SW[3]\n"
            "set_location_assignment PIN_E16 -to SW[0]\n"
            "set_location_assignment PIN_M16 -to SW[1]\n"
            "set_location_assignment PIN_M15 -to SW[2]\n"
@@ -239,15 +248,15 @@ void MainWindow::on_PB_generate_clicked()
     S_BEEP = "#================================================================================\n"
              "# BEEP\n"     //!SET BUZ/SW TO BUZ
              "#================================================================================\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to BEEP\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to BEEP\n"
             "set_location_assignment PIN_K10 -to BEEP\n"
              "\n";
     S_PS2 = "#================================================================================\n"
             "# PS/2\n"
             "#================================================================================\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to PS2_DAT\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to PS2_DAT\n"
             "#set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to PS2_DAT2\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to PS2_CLK\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to PS2_CLK\n"
             "#set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to PS2_CLK2\n"
             "set_location_assignment PIN_A8 -to PS2_DAT\n"
             "#set_location_assignment PIN_R9 -to PS2_DAT2\n"
@@ -257,20 +266,20 @@ void MainWindow::on_PB_generate_clicked()
     S_VGA = "#================================================================================\n"
             "# VGA\n"
             "#================================================================================\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_B[0]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_B[1]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_B[2]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_B[3]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_G[0]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_G[1]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_G[2]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_G[3]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_R[0]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_R[1]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_R[2]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_R[3]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_HS\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_VS\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_B[0]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_B[1]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_B[2]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_B[3]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_G[0]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_G[1]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_G[2]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_G[3]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_R[0]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_R[1]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_R[2]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_R[3]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_HS\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to VGA_VS\n"
             "set_location_assignment PIN_N16 -to VGA_B[0]\n"
             "set_location_assignment PIN_L15 -to VGA_B[1]\n"
             "set_location_assignment PIN_L16 -to VGA_B[2]\n"
@@ -291,12 +300,12 @@ void MainWindow::on_PB_generate_clicked()
     S_SDCard = "#================================================================================\n"
                "# SDCard\n"
                "#================================================================================\n"
-               "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_DAT[0]\n"
-               "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_DAT[1]\n"
-               "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_DAT[2]\n"
-               "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_DAT[3]\n"
-               "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_CLK\n"
-               "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_CMD\n"
+               //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_DAT[0]\n"
+               //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_DAT[1]\n"
+               //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_DAT[2]\n"
+               //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_DAT[3]\n"
+               //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_CLK\n"
+               //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to SD_CMD\n"
                "set_location_assignment PIN_T11 -to SD_DAT[0]\n"
                "set_location_assignment PIN_R10 -to SD_DAT[1]\n"
                "set_location_assignment PIN_T13 -to SD_DAT[2]\n"
@@ -307,53 +316,53 @@ void MainWindow::on_PB_generate_clicked()
     S_Serial = "#================================================================================\n"
                "# Serial Prot\n"
                "#================================================================================\n"
-               "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to RXD\n"
-               "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to TXD\n"
+               //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to RXD\n"
+               //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to TXD\n"
                "set_location_assignment PIN_B7 -to RXD\n"
                "set_location_assignment PIN_A7 -to TXD\n"
                "\n";
     S_DRAM = "#================================================================================\n"
              "# DRAM\n"
              "#================================================================================\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[0]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[1]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[2]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[3]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[4]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[5]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[6]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[7]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[8]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[9]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[10]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[11]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[12]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_BA[0]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_BA[1]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_CAS_N\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_CKE\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_CLK\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_CS_N\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[0]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[1]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[2]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[3]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[4]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[5]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[6]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[7]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[8]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[9]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[10]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[11]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[12]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[13]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[14]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[15]\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_LDQM\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_RAS_N\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_UDQM\n"
-            "set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_WE_N\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[0]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[1]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[2]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[3]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[4]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[5]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[6]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[7]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[8]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[9]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[10]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[11]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_ADDR[12]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_BA[0]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_BA[1]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_CAS_N\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_CKE\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_CLK\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_CS_N\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[0]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[1]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[2]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[3]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[4]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[5]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[6]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[7]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[8]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[9]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[10]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[11]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[12]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[13]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[14]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_DQ[15]\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_LDQM\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_RAS_N\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_UDQM\n"
+            //"set_instance_assignment -name IO_STANDARD \"3.3-V LVTTL\" -to DRAM_WE_N\n"
             "set_location_assignment PIN_J2 -to DRAM_ADDR[0]\n"
             "set_location_assignment PIN_K1 -to DRAM_ADDR[1]\n"
             "set_location_assignment PIN_K2 -to DRAM_ADDR[2]\n"
@@ -403,30 +412,30 @@ void MainWindow::on_PB_generate_clicked()
           "\n";
     S_V += "module " + ui->lineEdit_Pro_name->text() + "(\n\n";
 
-    S_V_CLOCK = "//////////// CLOCK //////////\n"
+    S_V_CLOCK = "////////////CLOCK//////////\n"
                 "input 		          		CLK_50,\n"
                 "\n";
-    S_V_LED = "//////////// LED //////////\n"
+    S_V_LED = "////////////LED//////////\n"
               "output		     [3:0]		LED,\n"
                 "\n";
-    S_V_SEG8 = "//////////// SEG8 //////////\n"
+    S_V_SEG8 = "////////////SEG8//////////\n"
                 "\n";
-    S_V_KEY = "//////////// KEY //////////\n"
+    S_V_KEY = "////////////KEY//////////\n"
               "input 		     [3:0]		KEY,\n"
                 "\n";
-    S_V_SW = "//////////// SW //////////\n"
+    S_V_SW = "////////////SW//////////\n"
              "input 		     [3:0]		SW,\n"
                 "\n";
-    S_V_BEEP = "//////////// BEEP //////////\n"
+    S_V_BEEP = "////////////BEEP//////////\n"
                "output 		          		BEEP,\n"
                 "\n";
-    S_V_PS2 = "//////////// PS/2 //////////\n"
+    S_V_PS2 = "////////////PS/2//////////\n"
               "inout 		          		PS2_DAT,\n"
               "//inout 		          		PS2_DAT2,\n"
               "inout 		          		PS2_CLK,\n"
               "//inout 		          		PS2_CLK2,\n"
               "\n";
-    S_V_SDCard = "//////////// SDCard //////////\n"
+    S_V_SDCard = "////////////SDCard//////////\n"
                  "output 		          		SD_CLK,\n"
                  "inout 		          		SD_CMD,\n"
                  "inout           [3:0]       	SD_DAT[0],\n"
@@ -434,18 +443,18 @@ void MainWindow::on_PB_generate_clicked()
                  "inout 		          		SD_DAT[2],\n"
                  "inout 		          		SD_DAT[3],\n"
                 "\n";
-    S_V_Serial = "//////////// Serial Port //////////\n"
+    S_V_Serial = "////////////Serial Port//////////\n"
                  "output 		          		TXD,\n"
                  "input 		          		RXD,\n"
                  "\n";
-    S_V_VGA = "//////////// VGA //////////\n"
-              "	output		     [3:0]		VGA_B,\n"
+    S_V_VGA = "////////////VGA//////////\n"
+              "output		     [3:0]		VGA_B,\n"
               "output		     [3:0]		VGA_G,\n"
               "output		          		VGA_HS,\n"
               "output		     [3:0]		VGA_R,\n"
               "output		          		VGA_VS,\n"
               "\n";
-    S_V_DRAM = "//////////// DRAM //////////\n"
+    S_V_DRAM = "////////////DRAM//////////\n"
                "output		    [12:0]		DRAM_ADDR,\n"
                "output		     [1:0]		DRAM_BA,\n"
                "output		          		DRAM_CAS_N,\n"
@@ -628,37 +637,155 @@ void MainWindow::on_CB_BEEP_stateChanged(int arg1)
 void MainWindow::on_CB_Change_clicked()
 {
     DNode temp;
-    temp.key=ui->O_Name->text();
+    temp.key=ui->CBB_O_name->currentText();
     temp.value=ui->N_Name->text();
+    QMessageBox::information(this,"CHANGE","RENAME "+temp.key+" TO "+temp.value);
     q.enqueue(temp);
 }
 
 void MainWindow::Name_Change(){
-    QString path_qsf,path_v,s_temp,s_get;
+    QString path_qsf,path_v,s_temp,s_get,s_,s_special_name,s_o_name,s_comment;
+    QRegExp regrxp_num("\\[(\\d+)"),regrxp_name("(.*)\\[");
     QFile f_temp;
     QTextStream f_stream(&f_temp);
     DNode temp;
+    //int mux_num=0;
     path_qsf = path +"/"+ ui->lineEdit_Pro_name->text() +".qsf";
     path_v = path +"/"+ ui->lineEdit_Pro_name->text() +".v";
 
     while(!q.empty()){
-        openFile(f_temp,path_qsf);
-        s_temp =  f_stream.readAll();
         temp = q.dequeue();
-        //s_temp.replace(QRegExp("LED\\[0\\]"),"~");
-        s_get = temp.key;
+        s_o_name = s_get = temp.key;
         s_get.replace(QRegExp("\\["),"\\[");
         s_get.replace(QRegExp("\\]"),"\\]");
-        ui->label->setText(s_get);
-        s_temp.replace(QRegExp(s_get),temp.value);
+
+        /*qsf change*/
+        openFile(f_temp,path_qsf);
+        s_temp =  f_stream.readAll();
+        if(s_o_name.contains("ALL")){
+            s_temp.replace(s_o_name.mid(0,s_o_name.indexOf("_")),temp.value);
+        }else {
+            s_temp.replace(QRegExp(s_get),temp.value);
+        }
         f_temp.close();
         f_temp.open(QIODevice::Truncate);
         f_temp.close();
-
         f_temp.open(QIODevice::WriteOnly);
         f_stream<<s_temp;
         f_temp.close();
+
+        /*v change*/
+        openFile(f_temp,path_v);
+        s_temp =  f_stream.readAll();
+        if(s_o_name.contains("ALL")){
+            //QMessageBox::about(NULL,"NO",s_temp.replace(s_o_name.mid(0,s_o_name.indexOf("_"))+",",temp.value+","));
+            if(s_temp.replace(s_o_name.mid(0,s_o_name.indexOf("_"))+",",temp.value+",")==s_temp)
+                s_temp.replace(s_o_name.mid(0,s_o_name.indexOf("_"))+" ",temp.value);
+        }
+        else {
+            int pos = regrxp_name.indexIn(s_o_name);
+            if(pos!=-1){
+                QMessageBox::about(this,"OK","aa");
+                s_special_name = regrxp_name.cap(1);
+                ui->label->setText(s_special_name);
+                s_comment = QString("\n//!!PIN %1 has been change to %2,dont use this PIN\n").arg(s_o_name).arg(temp.value);
+                s_comment.append(PIN_INOUT[s_special_name]+"            "+temp.value+";\n");
+                int locate = s_temp.lastIndexOf(s_special_name+",");
+                if(locate==-1)
+                    locate = s_temp.lastIndexOf(s_special_name+" ");
+                s_temp.insert(locate+s_special_name.length()+1,s_comment);
+            }
+        }
+        f_temp.close();
+        f_temp.open(QIODevice::Truncate);
+        f_temp.close();
+        f_temp.open(QIODevice::WriteOnly);
+        f_stream<<s_temp;
+        f_temp.close();
+
+
     }
-    //temp = q.dequeue();
-    //textEdit->loadResource();
+}
+
+void MainWindow::on_CBB_GPIO_currentIndexChanged(int index)
+{
+    switch(index){
+    case 0: //clk
+        ui->CBB_O_name->clear();
+        ui->CBB_O_name->insertItem(0,"CLK_50");
+        break;
+    case 1: //led
+        ui->CBB_O_name->clear();
+        ui->CBB_O_name->insertItem(0,"LED_ALL");
+        ui->CBB_O_name->insertItem(1,"LED[0]");
+        ui->CBB_O_name->insertItem(2,"LED[1]");
+        ui->CBB_O_name->insertItem(3,"LED[2]");
+        ui->CBB_O_name->insertItem(4,"LED[3]");
+        break;
+    case 2: //key
+        ui->CBB_O_name->clear();
+        ui->CBB_O_name->insertItem(0,"KEY_ALL");
+        ui->CBB_O_name->insertItem(1,"KEY[0]");
+        ui->CBB_O_name->insertItem(2,"KEY[1]");
+        ui->CBB_O_name->insertItem(3,"KEY[2]");
+        ui->CBB_O_name->insertItem(4,"KEY[3]");
+        break;
+    case 3: //sw
+        ui->CBB_O_name->clear();
+        ui->CBB_O_name->insertItem(0,"SW_ALL");
+        ui->CBB_O_name->insertItem(1,"SW[0]");
+        ui->CBB_O_name->insertItem(2,"SW[1]");
+        ui->CBB_O_name->insertItem(3,"SW[2]");
+        ui->CBB_O_name->insertItem(4,"SW[3]");
+        break;
+    case 4: //vga
+        ui->CBB_O_name->clear();
+        ui->CBB_O_name->insertItem(0,"VGA_B_ALL");
+        ui->CBB_O_name->insertItem(1,"VGA_G_ALL");
+        ui->CBB_O_name->insertItem(2,"VGA_R_ALL");
+        ui->CBB_O_name->insertItem(3,"VGA_B[0]");
+        ui->CBB_O_name->insertItem(4,"VGA_B[1]");
+        ui->CBB_O_name->insertItem(5,"VGA_B[2]");
+        ui->CBB_O_name->insertItem(6,"VGA_B[3]");
+        ui->CBB_O_name->insertItem(7,"VGA_G[0]");
+        ui->CBB_O_name->insertItem(8,"VGA_G[1]");
+        ui->CBB_O_name->insertItem(9,"VGA_G[2]");
+        ui->CBB_O_name->insertItem(10,"VGA_G[3]");
+        ui->CBB_O_name->insertItem(11,"VGA_R[0]");
+        ui->CBB_O_name->insertItem(12,"VGA_R[1]");
+        ui->CBB_O_name->insertItem(13,"VGA_R[2]");
+        ui->CBB_O_name->insertItem(14,"VGA_R[3]");
+        ui->CBB_O_name->insertItem(15,"VGA_HS");
+        ui->CBB_O_name->insertItem(16,"VGA_VS");
+        break;
+    case 5: //SEG
+        ui->CBB_O_name->clear();
+        ui->CBB_O_name->insertItem(0,"SW[0]");
+        ui->CBB_O_name->insertItem(1,"SW[1]");
+        ui->CBB_O_name->insertItem(2,"SW[2]");
+        ui->CBB_O_name->insertItem(3,"SW[3]");
+        break;
+    case 6: //SEG
+        ui->CBB_O_name->clear();
+        ui->CBB_O_name->insertItem(0,"SEL[0]");
+        ui->CBB_O_name->insertItem(1,"SEL[1]");
+        ui->CBB_O_name->insertItem(2,"SEL[2]");
+        ui->CBB_O_name->insertItem(3,"SEL[3]");
+        ui->CBB_O_name->insertItem(4,"SEL[4]");
+        ui->CBB_O_name->insertItem(5,"SEL[5]");
+        ui->CBB_O_name->insertItem(6,"SEL[6]");
+        ui->CBB_O_name->insertItem(7,"SEL[7]");
+        ui->CBB_O_name->insertItem(8,"DIG[0]");
+        ui->CBB_O_name->insertItem(9,"DIG[1]");
+        ui->CBB_O_name->insertItem(10,"DIG[2]");
+        ui->CBB_O_name->insertItem(11,"DIG[3]");
+        ui->CBB_O_name->insertItem(12,"DIG[4]");
+        ui->CBB_O_name->insertItem(13,"DIG[5]");
+        ui->CBB_O_name->insertItem(14,"DIG[6]");
+        ui->CBB_O_name->insertItem(15,"DIG[7]");
+        break;
+    default:
+        ui->CBB_O_name->clear();
+        break;
+    }
 }
