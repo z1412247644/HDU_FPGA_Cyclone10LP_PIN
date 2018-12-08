@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include<QCheckBox>
 #include "Dict.h"
-#include "choice_to_int.h"
 #include<QQueue>
 #include <QtGui>
 class QTextEdit;
@@ -32,10 +31,6 @@ private slots:
     void creatFile(QString,QString);
 
     void on_PB_generate_clicked();
-
-    void on_PB_save_clicked();
-
-    void on_PB_load_clicked();
 
     void CB_Check();
 
@@ -65,10 +60,16 @@ private slots:
 
     void on_CBB_GPIO_currentIndexChanged(int index);
 
+    void PIN_MODE_INIT();
+
+    void on_CB_FLASH_stateChanged(int arg1);
+
+
 private:
     QTextEdit *textEdit;
     QString path;
     QMap<QString,QString> PIN_INOUT;
+    bool CAN_BE_CHANGE_NAME;
 };
 
 #endif // MAINWINDOW_H

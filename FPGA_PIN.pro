@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+RC_ICONS = fpga.ico
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -31,8 +32,7 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    Dict.h \
-    choice_to_int.h
+    Dict.h
 
 FORMS += \
         mainwindow.ui

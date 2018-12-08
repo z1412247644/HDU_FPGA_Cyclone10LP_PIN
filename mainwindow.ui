@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>980</width>
-    <height>564</height>
+    <width>795</width>
+    <height>514</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+    <horstretch>14</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -19,7 +25,7 @@
      <rect>
       <x>490</x>
       <y>10</y>
-      <width>291</width>
+      <width>281</width>
       <height>431</height>
      </rect>
     </property>
@@ -97,7 +103,7 @@
      <item row="6" column="1">
       <widget class="QCheckBox" name="CB_Serial">
        <property name="text">
-        <string>Serial</string>
+        <string>UART</string>
        </property>
       </widget>
      </item>
@@ -194,12 +200,22 @@
        </item>
        <item>
         <property name="text">
-         <string>SDRAM</string>
+         <string>SD_CARD</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>SD_CARD</string>
+         <string>SPI_FLASH</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>BEEP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SDRAM</string>
         </property>
        </item>
       </widget>
@@ -210,16 +226,19 @@
         <bool>true</bool>
        </property>
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>9</horstretch>
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <property name="maximumSize">
         <size>
-         <width>138</width>
-         <height>100</height>
+         <width>1000</width>
+         <height>10000</height>
         </size>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::ActionsContextMenu</enum>
        </property>
       </widget>
      </item>
@@ -237,6 +256,13 @@
       <widget class="QPushButton" name="CB_Change">
        <property name="text">
         <string>CHANGE</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="1">
+      <widget class="QCheckBox" name="CB_FLASH">
+       <property name="text">
+        <string>SPI_FLASH</string>
        </property>
       </widget>
      </item>
@@ -284,26 +310,12 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>430</y>
+      <y>410</y>
       <width>731</width>
-      <height>58</height>
+      <height>51</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="PB_save">
-       <property name="text">
-        <string>Save Setting</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="PB_load">
-       <property name="text">
-        <string>Load Setting</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="PB_generate">
        <property name="text">
@@ -593,13 +605,31 @@ border-color: rgb(255, 0, 0)</string>
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="Rect_FLASH">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>320</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 3px;
+border-style: solid;
+border-color: rgb(255, 0, 0)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>980</width>
+     <width>795</width>
      <height>23</height>
     </rect>
    </property>
