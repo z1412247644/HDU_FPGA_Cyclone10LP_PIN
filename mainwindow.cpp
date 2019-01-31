@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     PIN_MODE_INIT();
 
-    setWindowFlags(Qt::FramelessWindowHint);
+    //setWindowFlags(Qt::FramelessWindowHint);
 
 }
 MainWindow::~MainWindow()
