@@ -5,7 +5,9 @@
 #include <QtWidgets>
 #include<QDateTime>
 #include<QImage>
+#include<QListWidget>
 #include<QMap>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -43,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 MainWindow::~MainWindow()
 {
+    FinalChange();
     delete ui;
     delete textEdit;
 //    DestroyDict(dict);
@@ -598,7 +601,11 @@ void MainWindow::on_PB_generate_clicked()
 
     path_v = path +"/"+ ui->lineEdit_Pro_name->text() +".v";
     creatFile(path_v,S_V);
+    
+    QFile::copy(":/html/html",path +"/"+ ui->lineEdit_Pro_name->text() +".html");
+
     CAN_BE_CHANGE_NAME = true;
+    QMessageBox::information(this,"INFO","Generate project sucessfull");
 }
 
 void MainWindow::on_PB_exit_clicked()
@@ -694,8 +701,9 @@ void MainWindow::on_CB_Change_clicked()
     }
     DNode temp;
     temp.key=ui->CBB_O_name->currentText();
-    temp.value=ui->N_Name->text();
-    QMessageBox::information(this,"CHANGE","RENAME "+temp.key+" TO "+temp.value);
+    temp.value=ui->N_Name->text();       
+    ui->listWidget->addItem(temp.key+" ==> "+temp.value);
+    ui->listWidget->setCurrentRow(ui->listWidget->count()-1);
     q.enqueue(temp);
     Name_Change();
 }
@@ -706,7 +714,8 @@ void MainWindow::Name_Change(){
     QFile f_temp;
     QTextStream f_stream(&f_temp);
     DNode temp;
-    //int mux_num=0;
+    QMessageBox::StandardButton YorN;
+
     path_qsf = path +"/"+ ui->lineEdit_Pro_name->text() +".qsf";
     path_v = path +"/"+ ui->lineEdit_Pro_name->text() +".v";
 
@@ -721,7 +730,16 @@ void MainWindow::Name_Change(){
         s_temp =  f_stream.readAll();
         if(s_o_name.contains("ALL")){   //Change the Grop name
             s_temp.replace(s_o_name.mid(0,s_o_name.lastIndexOf("_")),temp.value);
-        }else {         //Change one item name
+        }
+        else if(!s_o_name.contains("[")){
+            s_temp.replace(QRegExp(s_get),temp.value);
+        }
+        else {         //Change one item name
+            YorN = QMessageBox::question(this,"Waring","This action will break the port group,\nDo you want to continue?",QMessageBox::Yes | QMessageBox::No,QMessageBox::No);
+            if(YorN == QMessageBox::No){
+                ui->listWidget->takeItem(ui->listWidget->currentRow());
+                break;
+            }
             s_temp.replace(QRegExp(s_get),temp.value);
         }
         f_temp.close();
@@ -741,28 +759,37 @@ void MainWindow::Name_Change(){
         }
         else if(!s_o_name.contains("[")){
              s_temp.replace(s_o_name,temp.value);
+             QMessageBox::information(this,"CHANGE","RENAME "+temp.key+" TO "+temp.value);
         }
         else {      //Change one item name
+            if(YorN == QMessageBox::No)
+                break;
             int pos = regrxp_name.indexIn(s_o_name);
-            if(pos!=-1){
-                //QMessageBox::about(this,"OK","aa");
+            if(pos!=-1){                
                 s_special_name = regrxp_name.cap(1);
                 ui->label->setText(s_special_name);
-                s_comment = QString("\n//!!PIN %1 has been change to %2,dont use this PIN\n").arg(s_o_name).arg(temp.value);
-                s_comment.append(PIN_INOUT[s_special_name]+"            "+temp.value+",\n");
+                //s_comment = QString("\n//!!PIN %1 has been change to %2,dont use this PIN\n").arg(s_o_name).arg(temp.value);
+                //s_comment = QString("\n//!!PIN Group %1 has been break ,Please see the .qsf file for details.\n").arg(s_special_name);
+
+                s_comment = PIN_INOUT[s_special_name]+"            "+temp.value+",\n";
+
                 int locate = s_temp.lastIndexOf(s_special_name+",");
                 if(locate==-1)
                     locate = s_temp.lastIndexOf(s_special_name+" ");
+
                 s_temp.insert(locate+s_special_name.length()+1,s_comment);
-            }
+                //s_temp.remove(QRegularExpression("\\n(.*?)"+ s_special_name + ","));
+
+                QDelete.insert(s_special_name);
+                QMessageBox::information(this,"CHANGE","RENAME "+temp.key+" TO "+temp.value);
+            }            
         }
         f_temp.close();
         f_temp.open(QIODevice::Truncate);
         f_temp.close();
         f_temp.open(QIODevice::WriteOnly);
         f_stream<<s_temp;
-        f_temp.close();
-
+        f_temp.close();                
 
     }
 }
@@ -895,3 +922,36 @@ void MainWindow::on_CBB_GPIO_currentIndexChanged(int index)
     ui->CBB_O_name->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 }
 
+void MainWindow::FinalChange(){
+    QString s_comment,s_temp,s_special_name,path_v;
+    QFile f_temp;
+    QTextStream f_stream(&f_temp);
+
+    if(!CAN_BE_CHANGE_NAME)
+        return;
+
+    path_v = path +"/"+ ui->lineEdit_Pro_name->text() +".v";
+    openFile(f_temp,path_v);
+    s_temp =  f_stream.readAll();
+
+    auto p = QDelete.begin();
+    for(int i = 0;i<QDelete.size();i++){
+        s_special_name = *(p+i);
+        s_comment = QString("\n//!!PIN Group %1 has been break ,Please see the .qsf file for details.\n").arg(s_special_name);
+
+        int locate = s_temp.lastIndexOf(s_special_name+",");
+        if(locate==-1)
+            locate = s_temp.lastIndexOf(s_special_name+" ");
+
+        s_temp.insert(locate+s_special_name.length()+1,s_comment);
+        s_temp.remove(QRegularExpression("\\n(.*?)"+ s_special_name + ","));
+    }
+
+    f_temp.close();
+    f_temp.open(QIODevice::Truncate);
+    f_temp.close();
+    f_temp.open(QIODevice::WriteOnly);
+    f_stream<<s_temp;
+    f_temp.close();
+
+}

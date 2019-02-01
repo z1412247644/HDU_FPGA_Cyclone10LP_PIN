@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>795</width>
-    <height>514</height>
+    <width>1000</width>
+    <height>530</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -26,7 +26,7 @@
       <x>490</x>
       <y>10</y>
       <width>281</width>
-      <height>431</height>
+      <height>401</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -139,6 +139,13 @@
       <widget class="QCheckBox" name="CB_BEEP">
        <property name="text">
         <string>BEEP</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="1">
+      <widget class="QCheckBox" name="CB_FLASH">
+       <property name="text">
+        <string>SPI_FLASH</string>
        </property>
       </widget>
      </item>
@@ -259,13 +266,6 @@
        </property>
       </widget>
      </item>
-     <item row="10" column="1">
-      <widget class="QCheckBox" name="CB_FLASH">
-       <property name="text">
-        <string>SPI_FLASH</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
    <widget class="QLabel" name="label_main">
@@ -310,7 +310,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>410</y>
+      <y>420</y>
       <width>731</width>
       <height>51</height>
      </rect>
@@ -623,13 +623,41 @@ border-color: rgb(255, 0, 0)</string>
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_ChangeLog">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>20</y>
+      <width>209</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Change Log:</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>50</y>
+      <width>201</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Old ==&gt; New</string>
+     </property>
+    </item>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>795</width>
+     <width>1000</width>
      <height>23</height>
     </rect>
    </property>

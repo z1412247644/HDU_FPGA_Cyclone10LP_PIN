@@ -6,6 +6,8 @@
 #include "Dict.h"
 #include<QQueue>
 #include <QtGui>
+#include<QQueue>
+
 class QTextEdit;
 
 namespace Ui {
@@ -22,7 +24,8 @@ public:
 private:
     Ui::MainWindow *ui;
     //Dictptr dict;
-    QQueue<DNode> q;
+    QQueue<DNode> q;    
+    QSet<QString> QDelete;
     //QImage* img_main=new QImage,*img_logo= new QImage;
     //QImage* img_main_Scaled = new QImage,*img_logo_Scaled = new QImage;
 private slots:
@@ -70,6 +73,7 @@ private:
     QString path;
     QMap<QString,QString> PIN_INOUT;
     bool CAN_BE_CHANGE_NAME;
+    void FinalChange();
 };
 
 #endif // MAINWINDOW_H
