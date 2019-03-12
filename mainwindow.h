@@ -67,7 +67,11 @@ private slots:
 
     void on_CB_FLASH_stateChanged(int arg1);
 
+    void about_show();
 
+    void help_show();
+
+    void pin_map_show();
 private:
     QTextEdit *textEdit;
     QString path;

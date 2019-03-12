@@ -4,6 +4,8 @@
         <file alias="main">res/main.jpg</file>
         <file alias="ico">fpga.png</file>
         <file alias="pic_about">about.png</file>
+        <file alias="pic_model">model.png</file>
+        <file>HX1006A.png</file>
     </qresource>
     <qresource prefix="/html">
         <file alias="html">HX1006A.html</file>

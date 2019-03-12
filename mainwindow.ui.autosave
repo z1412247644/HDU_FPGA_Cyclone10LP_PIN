@@ -669,7 +669,7 @@ border-color: rgb(255, 0, 0)</string>
      <rect>
       <x>345</x>
       <y>113</y>
-      <width>126</width>
+      <width>163</width>
       <height>130</height>
      </rect>
     </property>
@@ -680,7 +680,7 @@ border-color: rgb(255, 0, 0)</string>
      </font>
     </property>
     <property name="title">
-     <string>Help</string>
+     <string>    Help    </string>
     </property>
     <property name="separatorsCollapsible">
      <bool>false</bool>
@@ -718,7 +718,7 @@ border-color: rgb(255, 0, 0)</string>
   </action>
   <action name="actionPIN_MAP">
    <property name="text">
-    <string>PIN_MAP</string>
+    <string>Default PIN MAP</string>
    </property>
   </action>
   <action name="actionAbout_2">
