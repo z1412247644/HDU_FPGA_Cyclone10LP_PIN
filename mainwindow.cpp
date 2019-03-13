@@ -965,9 +965,11 @@ void MainWindow::about_show(){
 }
 
 void MainWindow::pin_map_show(){
-    QDesktopServices::openUrl(QUrl("./HX1006A.html"));
+    QFileInfo info("HX1006A.html");
+    QDesktopServices::openUrl(QUrl(info.absoluteFilePath()));
 }
 
 void MainWindow::help_show(){
-    QDesktopServices::openUrl(QUrl("./help.html"));
+    QFileInfo info("UserGuide.html");
+    QDesktopServices::openUrl(QUrl(info.absoluteFilePath()));
 }
