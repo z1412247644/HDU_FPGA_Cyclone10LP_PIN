@@ -44,6 +44,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionAbout_3->connect(ui->actionAbout_3,SIGNAL(triggered()),this,SLOT(about_show()));
     ui->actionhelp->connect(ui->actionhelp,SIGNAL(triggered()),this,SLOT(help_show()));
     ui->actionPIN_MAP->connect(ui->actionPIN_MAP, SIGNAL(triggered()),this,SLOT(pin_map_show()));
+    ui->actionExit->connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(on_PB_exit_clicked()));
+
 }
 MainWindow::~MainWindow()
 {
@@ -959,15 +961,23 @@ void MainWindow::FinalChange(){
 }
 
 void MainWindow::about_show(){
-    QMessageBox message(QMessageBox::NoIcon, "About", "\nAuthor:\nPD Zhang");
-    message.setIconPixmap(QPixmap(":/img/pic_about").scaled(600,350));
+    /*
+    QMessageBox message(QMessageBox::NoIcon, "About","");
+    message.setIconPixmap(QPixmap(":/img/about.jpg").scaled(400,400));
     message.exec();
+    */
+    Dialog_about = new about(this);
+    Dialog_about->setModal(true);
+    Dialog_about->show();
+
 }
 
 void MainWindow::pin_map_show(){
-    QDesktopServices::openUrl(QUrl("./HX1006A.html"));
+    QFileInfo info("HX1006A.html");
+    QDesktopServices::openUrl(QUrl("http://edalab.mcuzone.com/DevKit/HX1006A/HX1006A.html"));
 }
 
 void MainWindow::help_show(){
-    QDesktopServices::openUrl(QUrl("./help.html"));
+    QFileInfo info("UserGuide.html");
+    QDesktopServices::openUrl(QUrl("http://edalab.mcuzone.com/DevKit/HX1006A/UserGuide.html"));
 }

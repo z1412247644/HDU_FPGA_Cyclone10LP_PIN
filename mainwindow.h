@@ -7,6 +7,7 @@
 #include<QQueue>
 #include <QtGui>
 #include<QQueue>
+#include "about.h"
 
 class QTextEdit;
 
@@ -23,6 +24,7 @@ public:
     ~MainWindow();
 private:
     Ui::MainWindow *ui;
+    about *Dialog_about;
     //Dictptr dict;
     QQueue<DNode> q;    
     QSet<QString> QDelete;
