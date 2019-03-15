@@ -28,14 +28,17 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    Dict.cpp
+    Dict.cpp \
+    about.cpp
 
 HEADERS += \
         mainwindow.h \
-    Dict.h
+    Dict.h \
+    about.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    about.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
